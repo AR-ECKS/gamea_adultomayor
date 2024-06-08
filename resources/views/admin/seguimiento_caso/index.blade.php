@@ -70,15 +70,15 @@
                                             @endif
                                         </td>
                                         <td class="text-end">
-                                            @if ($item->estado == 1)
+                                            @if ( true/* $item->estado == 1 */)
 
-                                            <a href="{{ route('/admin/seguimiento_caso/', $item->id) }}"
+                                            <a href="{{ route('seguimiento_caso.show', $item->id) }}"
                                                 class="btn-sm btn-info" title="Ver detalles"> <i
                                                     class="far fa-eye"></i></a>
-                                            <a href="{{ route('/admin/seguimiento_caso/', $item->id) }}"
+                                            <a href="{{ route('seguimiento_caso.edit', $item->id) }}"
                                                         class="btn-sm btn-secondary"> <i
                                                             class="fas fa-edit"></i></a>
-                                            <form action="{{ route('/admin/seguimiento_caso', $item->id) }}"
+                                            <form action="{{ route('seguimiento_caso.delete', $item->id) }}"
                                                                 method="POST" style="display: inline-block;"
                                                                 class="form-eliminar">
                                                                 @csrf
@@ -91,7 +91,7 @@
                                                                 </button>
                                                             </form>
                                                             @else
-                                                            <a href="{{ route('/admin/seguimiento_caso', $item->id) }}"
+                                                            <a href="{{-- route('/admin/seguimiento_caso', $item->id) --}}"
                                                                 class="btn-sm btn-dark" data-toggle="tooltip"
                                                                 data-placement="top" title="Restaurar">
                                                                 <i class="fas fa-undo"></i>
