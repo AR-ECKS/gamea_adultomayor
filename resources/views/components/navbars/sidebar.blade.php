@@ -131,7 +131,7 @@
                         <a class="nav-link text-dark {{ $activePage == 'Seguimiento' ? ' active text-white ' . $classbg : '' }}"
                             href="{{ route('seguimiento_caso.index') }}">
                             <!-- <div class="text-dark text-center me-2 d-flex align-items-center justify-content-center">
-                                <i style="font-size: 1rem; color: {{ $activePage == 'Registro' ? 'white' : 'inherit' }}"
+                                <i style="font-size: 1rem; color: {{ $activePage == 'Seguimiento' ? 'white' : 'inherit' }}"
                                     class="fas fa-users ps-2 pe-2 text-center"></i>
                             </div>
                             <span class="nav-link-text ms-1">Coordinacion Caso</span> -->
@@ -141,6 +141,21 @@
                 </ul>
             @endcan
 
+            {{-- @can('acceso_registro_atencion') --}}
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark {{ $activePage == 'CasoExtravio' ? ' active text-white ' . $classbg : '' }}"
+                            href="{{ route('caso_extravio.index') }}">
+                            <!-- <div class="text-dark text-center me-2 d-flex align-items-center justify-content-center">
+                                <i style="font-size: 1rem; color: {{ $activePage == 'CasoExtravio' ? 'white' : 'inherit' }}"
+                                    class="fas fa-users ps-2 pe-2 text-center"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Coordinacion Caso</span> -->
+                            <img src="https://img.icons8.com/?size=100&id=35639&format=png&color=000000 " width="30"  alt="" style=" margin-left:3px" > Casos de Extravio
+                        </a>
+                    </li>
+                </ul>
+            {{-- @endcan --}}
 
     </div>
 

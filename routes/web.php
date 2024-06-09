@@ -21,6 +21,7 @@ use App\Http\Controllers\admin\AdultoMayorController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\RegistroAtencionController;
 use App\Http\Controllers\admin\Seguimiento_casoController;
+use App\Http\Controllers\admin\CasoExtravioController;
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
@@ -85,6 +86,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('admin/seguimiento_caso/{seguimiento_caso}/generateForm)', [Seguimiento_casoController::class, 'generateForm'])->name('seguimiento_caso.generateForm');
 
 	Route::get('admin/seguimiento_caso/json/{adultomayor_id}', [Seguimiento_casoController::class, 'getRegistroAtencionJson'])->name('getRegistroAtencionJson');
+
+	# Casos de extravios
+	Route::resource('admin/caso_extravio', CasoExtravioController::class);
 
 });
 
