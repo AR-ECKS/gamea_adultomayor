@@ -40,13 +40,22 @@ $(document).ready(function(){
 
             </div>
             <div class="card-body p-3">
+              <div class="float-start mt-5">
+                <div class="btn-group">
+                  <label><input type="radio" name="filter" value="" checked> Todos</label>
+                  @foreach ($roles as $rol)
+                    <label><input type="radio" name="filter" value="{{$rol}}"> {{$rol}}</label>
+                  @endforeach
+                  
+                </div>
+              </div>
               <div class="float-end mt-3">
                 <a type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
                   <i class="fas fa-database"></i> Nuevo Usuario
                 </a>
               </div>
               <br><br><br>
-              <div class="tab-content">
+              <div class="tab-content mt-2">
                 <div class="table-responsive-xl">
                   <table class="table table-sm text-sm table-striped">
                     <thead class="">
@@ -137,7 +146,7 @@ $(document).ready(function(){
     <script>
       $(document).ready(function() {
 
-        $(".table").DataTable({
+        var table = $(".table").DataTable({
           lengthMenu: [10, 25, 50],
           order: [
 
@@ -169,6 +178,14 @@ $(document).ready(function(){
             },
           },
 
+        });
+
+        $('input[name="filter"]').on('change', function () {
+            // Obtener el valor seleccionado
+            var filterValue = $(this).val();
+
+            // Aplicar filtro a la columna deseada (por ejemplo, la primera columna, índice 0)
+            table.column(5).search(filterValue).draw();
         });
       });
     </script>
