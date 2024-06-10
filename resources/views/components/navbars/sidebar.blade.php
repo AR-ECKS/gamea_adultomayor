@@ -151,7 +151,7 @@
                                     class="fas fa-users ps-2 pe-2 text-center"></i>
                             </div>
                             <span class="nav-link-text ms-1">Coordinacion Caso</span> -->
-                            <img src="https://img.icons8.com/?size=100&id=BKArHeLxy2av&format=png&color=000000" width="30"  alt="" style=" margin-left:3px" > Casos de Extravio
+                            <img src="https://img.icons8.com/?size=100&id=35639&format=png&color=000000 " width="30"  alt="" style=" margin-left:3px" > Casos de Extravio
                         </a>
                     </li>
                 </ul>

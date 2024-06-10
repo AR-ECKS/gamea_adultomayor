@@ -14,9 +14,10 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-3">
+
                                     @if($caso_extravio->url_imagen!=="")
                                         <div class="w-100 bg-success text-white rounded-1 text-center mt-1">Imagen del Extravio</div>
-                                        <img id="imagePreview" src="{{$caso_extravio->url_imagen}}" alt="Picture" class="img-thumbnail w-100 d-block mx-auto">
+                                        <img id="imagePreview" src="{{ asset('extravios').'/'.$caso_extravio->ruta_imagen}}" alt="Picture" class="img-thumbnail w-100 d-block mx-auto">
                                     @else
                                         <div class="w-100 bg-danger text-white rounded-1 text-center mt-1">No hay Imagen del Extravio</div>
                                     @endif

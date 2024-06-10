@@ -35,6 +35,7 @@ class CasoExtravioController extends Controller
         return view('admin.caso_extravio.create', compact('adultos_mayores'))->with('correcto', 'correcto')
             ->with('OPTIONS_IMAGE', self::OPTIONS_IMAGE);
     }
+    
     public function store(Request $request)
     {
         $requestData = $request->all();
@@ -79,6 +80,9 @@ class CasoExtravioController extends Controller
                 // throw $e;
             }
         }
+        if($request->hasFile('portada')){
+            $requestData['portada']=$request->file('portada')->store('uploads','public');
+            }
     
         $caso_extravio->save();
     
