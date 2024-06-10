@@ -9,11 +9,12 @@ use App\Models\AdultoMayor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class CasoExtravioController extends Controller
 {
     const OPTIONS_IMAGE = [
-        'escale' => [1, 1],
+        'escale' => [1, 1], // ancho alto
         'min_width' => 300,
         'max_width' => 1000,
         'max_size' => 10240. //KB = 10MB //9551713,
@@ -75,38 +76,27 @@ class CasoExtravioController extends Controller
         # procesar imagen
         if(!is_null($request->imagen)){
             try {
-                $imagen = Image::read($request->imagen);
+                $imagen = Image::make($request->imagen);
                 $ancho_final = 0;
                 $alto_final = 0;
-                if($this->ANCHO_MINIMO_PREVISUALIZACION >= $imagen->width() && $imagen->width() <= $this->ANCHO_MAXIMO_PREVISUALIZACION){
+                if(self::OPTIONS_IMAGE['min_width'] >= $imagen->width() && $imagen->width() <= self::OPTIONS_IMAGE['max_width']){
                     $ancho_final = $imagen->width();
-                    $alto_final = ($ancho_final/$this->ESCALA_IMAGEN_ANCHO) * $this->ESCALA_IMAGEN_ALTO;
+                    $alto_final = ($ancho_final/ self::OPTIONS_IMAGE['escale'][0]) * self::OPTIONS_IMAGE['escale'][1];
                 } else {
-                    $ancho_final = $imagen->width() > $this->ANCHO_MAXIMO_PREVISUALIZACION? $this->ANCHO_MAXIMO_PREVISUALIZACION: $this->ANCHO_MINIMO_PREVISUALIZACION;
-                    $alto_final = ($ancho_final/$this->ESCALA_IMAGEN_ANCHO) * $this->ESCALA_IMAGEN_ALTO;
+                    $ancho_final = $imagen->width() > self::OPTIONS_IMAGE['max_width']? self::OPTIONS_IMAGE['max_width']: self::OPTIONS_IMAGE['min_width'];
+                    $alto_final = ($ancho_final/self::OPTIONS_IMAGE['escale'][0]) * self::OPTIONS_IMAGE['escale'][1];
                 }
                 $imagen->resize($ancho_final, $alto_final);
-                $nombre_foto = "Empresa_logo_" . Str::random(5) . \Carbon\Carbon::now()->timestamp . '.'. $this->imagen_empresa_cliente->getClientOriginalExtension();
-                $imagen->save(Storage::disk('recursos_empresa')->path('/'). $nombre_foto);
+                $nombre_foto = "Adulto_Mayor_Foto_". \Carbon\Carbon::now()->timestamp . '.jpg';
+                //$imagen->save(public_path('extravios/'). $nombre_foto, 100, 'jpg');
+                $imagen->save(Storage::disk('extravios')->path('/'). $nombre_foto, 100, 'jpg');
+                #$imagen->save(Storage::disk('recursos_empresa')->path('/'). $nombre_foto);
                 
-                $empresa_cliente->imagen_nombre_empresa_cliente = $nombre_foto;
+                $caso_extravio->ruta_imagen = $nombre_foto;
             }catch(\Exception $e){
                 # error, no se como se lanza errores
+                //throw $e;
             }
-        }
-        return response()->json([
-            'REQUEST' => $request,
-            'IMAGE' => $request->file('sing'),
-            'otro' => $request->imagen
-        ], 200);
-        if(!is_null($request->imagen)){
-            /* $nombreArchivo = $image->getClientOriginalName();
-            $extensionarchivo = $image->getClientOriginalExtension(); */
-            return response()->json([
-                "code"=> "1",
-                "message"=> "Ocurrio un error al subir la imagen",
-                "data"=> $request->imagen
-            ], 200);
         }
         $caso_extravio->save();
         #

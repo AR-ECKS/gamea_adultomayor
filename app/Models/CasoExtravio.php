@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class CasoExtravio extends Model
 {
@@ -32,5 +33,16 @@ class CasoExtravio extends Model
     /* ***************** RELACIONES **************** */
     public function adulto_mayor(){
         return $this->belongsTo(AdultoMayor::class, 'adultomayor_id');
+    }
+
+    /* attribute
+     * url_imagen */
+    public function getUrlImagenAttribute(): string {
+        $vacio = !is_null($this->ruta_imagen) && trim($this->ruta_imagen) && Storage::disk('extravios')->exists($this->ruta_imagen);
+        if($vacio){
+            return Storage::disk('extravios')->url($this->ruta_imagen);
+        } else {
+            return "";
+        }
     }
 }

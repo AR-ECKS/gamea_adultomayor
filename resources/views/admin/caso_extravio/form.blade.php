@@ -15,7 +15,7 @@
             <label for="adultomayor_id" class="block font-medium text-sm text-gray-700">{{ 'Adulto Mayor' }}</label>
             <br>
             <select class="form-select" id="adultomayor_id" name="adultomayor_id" data-maximum-selection-length="10">
-                <option value="" disabled selected>Selecciona un Adulto Mayor</option>
+                <option value="" disabled selected required>Selecciona un Adulto Mayor</option>
                 
                 @foreach($adultos_mayores as $am)
                     <option value="{{ $am->id }}">
@@ -36,7 +36,7 @@
 
         <div class="col-md-12">
             <label for="descripcion" class="block font-medium text-sm text-gray-700">{{ 'Descripción:' }}</label>
-            <textarea class="form-control" id="descripcion" name="descripcion" type="text">{{ isset($caso_extravio->descripcion) ? $caso_extravio->descripcion : ''}}</textarea>
+            <textarea class="form-control" id="descripcion" name="descripcion" type="text" required>{{ isset($caso_extravio->descripcion) ? $caso_extravio->descripcion : ''}}</textarea>
             {!! $errors->first('descripcion', '<p class="text-danger">:message</p>') !!}
         </div>
 

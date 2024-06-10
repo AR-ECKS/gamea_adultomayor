@@ -45,6 +45,14 @@ return [
             'throw' => false,
         ],
 
+        'extravios' => [
+            'driver' => 'local',
+            'root' => base_path('public/extravios'),
+            'url' => env('APP_URL').'extravios',
+            'visibility' => 'public',
+            'throw' => true,
+        ],
+
         
 
         's3' => [

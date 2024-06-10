@@ -63,7 +63,7 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->fecha }}</td>
                                                     <td>{{ $item->descripcion }}</td>
-                                                    <td>{{ $item->ruta_imagen }}</td>
+                                                    <td>{{ $item->ruta_imagen }} <br> {{-- $item->url_imagen --}}</td>
                                                     <td>
                                                         @if ($item->estado == 1)
                                                             <span class="badge bg-danger">En búsqueda</span>

@@ -12,40 +12,50 @@
                             <div class="m-auto ">Detalles del caso de extravio': </div>
                             <div class="m-auto"><h2> {{ $caso_extravio->id  }}</h2></div>
                         <div class="card-body">
-
-
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td class="border px-8 py-2 font-bold"> Fecha </td>
-                                            <td class="border px-8 py-2">
-                                                {{ $caso_extravio->fecha }}
-                                                <p class="price">{{ \Carbon\Carbon::parse($caso_extravio->fecha)->locale('es')->isoFormat('D \d\e MMMM \d\e YYYY') }}</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="border px-8 py-2 font-bold"> Descripción </td>
-                                            <td class="border px-8 py-2"> {{ $caso_extravio->descripcion }} </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="border px-8 py-2 font-bold"> Otros </td>
-                                            <td class="border px-8 py-2"> {{ $caso_extravio->otros }} </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="border px-8 py-2 font-bold"> Detalles del adulto mayor </td>
-                                            <td class="border px-2 py-2">
-                                                <b>Nombres:</b> {{$caso_extravio->adulto_mayor->nombres}} <br>
-                                                <b>Apellidos:</b> {{$caso_extravio->adulto_mayor->apellido_paterno}} {{$caso_extravio->adulto_mayor->apellido_materno}} <br>
-                                                <b>CI:</b> {{$caso_extravio->adulto_mayor->ci}} {{$caso_extravio->adulto_mayor->extension}} <br>
-                                                <b>Fecha de Nacimiento:</b> {{ \Carbon\Carbon::parse($caso_extravio->adulto_mayor->fecha_nacimiento)->locale('es')->isoFormat('D \d\e MMMM \d\e YYYY') }}
-                                            </td>
-                                        </tr>
-
-                                        </tbody>
-                                    </table>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    @if($caso_extravio->url_imagen!=="")
+                                        <div class="w-100 bg-success text-white rounded-1 text-center mt-1">Imagen del Extravio</div>
+                                        <img id="imagePreview" src="{{$caso_extravio->url_imagen}}" alt="Picture" class="img-thumbnail w-100 d-block mx-auto">
+                                    @else
+                                        <div class="w-100 bg-danger text-white rounded-1 text-center mt-1">No hay Imagen del Extravio</div>
+                                    @endif
                                 </div>
-
+                                <div class="col-md-9">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="border px-8 py-2 font-bold"> Fecha </td>
+                                                    <td class="border px-8 py-2">
+                                                        {{-- $caso_extravio->fecha --}}
+                                                        <p class="price">{{ \Carbon\Carbon::parse($caso_extravio->fecha)->locale('es')->isoFormat('D \d\e MMMM \d\e YYYY') }}</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="border px-8 py-2 font-bold"> Descripción </td>
+                                                    <td class="border px-8 py-2"> {{ $caso_extravio->descripcion }} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="border px-8 py-2 font-bold"> Otros </td>
+                                                    <td class="border px-8 py-2"> {{ $caso_extravio->otros }} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="border px-8 py-2 font-bold"> Detalles del adulto mayor </td>
+                                                    <td class="border px-2 py-2">
+                                                        <b>Nombres:</b> {{$caso_extravio->adulto_mayor->nombres}} <br>
+                                                        <b>Apellidos:</b> {{$caso_extravio->adulto_mayor->apellido_paterno}} {{$caso_extravio->adulto_mayor->apellido_materno}} <br>
+                                                        <b>CI:</b> {{$caso_extravio->adulto_mayor->ci}} {{$caso_extravio->adulto_mayor->extension}} <br>
+                                                        <b>Fecha de Nacimiento:</b> {{ \Carbon\Carbon::parse($caso_extravio->adulto_mayor->fecha_nacimiento)->locale('es')->isoFormat('D \d\e MMMM \d\e YYYY') }}
+                                                    </td>
+                                                </tr>
+        
+                                                </tbody>
+                                            </table>
+                                        </div>
+        
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
