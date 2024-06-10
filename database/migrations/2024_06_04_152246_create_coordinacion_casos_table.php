@@ -21,8 +21,8 @@ class CreateCoordinacionCasosTable extends Migration
             $table->string('area_origen')->nullable();
             $table->string('area_destino')->nullable();
             $table->tinyInteger('estado')->default('1');
-            $table->integer('adultomayor_id')->unsigned();
-            $table->foreign('adultomayor_id')->references('id')->on('adulto_mayors');
+            $table->integer('registroatencion_id')->unsigned();
+            $table->foreign('registroatencion_id')->references('id')->on('registro_atencions');
             });
     }
 
