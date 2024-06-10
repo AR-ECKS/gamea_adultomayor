@@ -101,6 +101,7 @@ class Coordinacion_casoController extends Controller
 
     
     public function generateForm($id)
+<<<<<<< HEAD
 {
     date_default_timezone_set('America/La_Paz');
     $fecha_actual = date('Y-m-d');
@@ -117,6 +118,19 @@ class Coordinacion_casoController extends Controller
     // Genera la vista y la renderiza
 
         $view = View::make('admin/pdf/coordinacion', compact('adulto','coordinacion', 'registro'))->render();
+=======
+    {
+
+        date_default_timezone_set('America/La_Paz');
+        $fecha_actual = date('Y-m-d');
+        $coordinacion = Coordinacion_caso::findOrFail($id);
+        $registro = RegistroAtencion::findOrFail($id); // Encuentra el registro de atención por su ID
+
+        $adulto = AdultoMayor::findOrFail($registro->adultomayor_id); // Encuentra al adulto mayor utilizando el ID almacenado en el registro de atención
+
+
+        $view = View::make('admin/pdf/coordinacion', compact('adulto', 'registro'))->render();
+>>>>>>> 3609d3d (trabajando en los pdfs)
 
         $pdf = App::make('dompdf.wrapper');
         $pdf->setOptions([
