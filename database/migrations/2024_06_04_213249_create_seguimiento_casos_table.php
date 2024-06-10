@@ -21,6 +21,7 @@ class CreateSeguimientoCasosTable extends Migration
             $table->string('descripcion')->nullable();
             $table->string('nombre_completo')->nullable();
             $table->string('celular')->nullable();
+            $table->tinyInteger('estado')->default('1');
             $table->integer('registroatencion_id')->unsigned();
             $table->foreign('registroatencion_id')->references('id')->on('registro_atencions');
             });

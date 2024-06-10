@@ -62,7 +62,7 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $item->fecha }}</td>
-                                                    <td>{{ $item->descripcion }}</td>
+                                                    <td class="text-truncate" style="max-width: 200px">{{ $item->descripcion }}</td>
                                                     <td>{{ $item->ruta_imagen }} <br> {{-- $item->url_imagen --}}</td>
                                                     <td>
                                                         @if ($item->estado == 1)
@@ -79,11 +79,11 @@
                                                             <a href="{{ route('caso_extravio.edit', $item->id) }}"
                                                                 class="btn-sm btn-secondary"> <i
                                                                     class="fas fa-edit"></i></a>
-                                                            <a href="{{ route('coordinacion_caso.generateForm', $item->id) }}"
+                                                            <a href="{{-- route('caso_extravio.generateForm', $item->id) --}}"
                                                                 class="btn-sm btn-warning" target="_blank"
                                                                 title="Ver detalles"> <i class="fas fa-print"></i></a>
                                                             <form
-                                                                action="{{ route('coordinacion_caso.delete', $item->id) }}"
+                                                                action="{{ route('caso_extravio.delete', $item->id) }}"
                                                                 method="POST" style="display: inline-block;"
                                                                 class="form-eliminar">
                                                                 @csrf
@@ -96,7 +96,7 @@
                                                                 </button>
                                                             </form>
                                                         @else
-                                                            <a href="{{ route('coordinacion_caso.reingresar', $item->id) }}"
+                                                            <a href="{{ route('caso_extravio.reingresar', $item->id) }}"
                                                                 class="btn-sm btn-dark" data-toggle="tooltip"
                                                                 data-placement="top" title="Restaurar">
                                                                 <i class="fas fa-undo"></i>

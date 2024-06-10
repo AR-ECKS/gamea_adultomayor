@@ -17,8 +17,8 @@ return new class extends Migration
             $table->date('fecha')->nullable();
             $table->string('otros', 250)->nullable();
             $table->string('ruta_imagen', 250)->nullable();
-            $table->unsignedBigInteger('adultomayor_id');
-            #$table->foreign('adultomayor_id')->references('id')->on('adulto_mayors')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('adultomayor_id')->unsigned();
+            $table->foreign('adultomayor_id')->references('id')->on('adulto_mayors');
             # posiblemente cambiar el incremente por id
             $table->enum('estado', [0, 1])->default(1)
                 ->comment('Se refiere a que si el estado es 1 signmifica activo, 0 significa que ya se encontro al adulto mayor.');

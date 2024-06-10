@@ -61,7 +61,9 @@
                                 @foreach($seguimiento_caso as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td class="px-6 py-4">{{ $item->fecha }}</td><td class="px-6 py-4">{{ $item->tipologia }}</td><td class="px-6 py-4">{{ $item->descripcion }}</td>
+                                        <td class="px-6 py-4">{{ $item->fecha }}</td>
+                                        <td class="px-6 py-4">{{ $item->tipologia }}</td>
+                                        <td class="px-4 py-4 text-truncate" style="max-width: 200px">{{ $item->descripcion }}</td>
                                         <td>
                                             @if ($item->estado == 1)
                                                 <span class="badge bg-warning">Activo</span>
@@ -70,7 +72,7 @@
                                             @endif
                                         </td>
                                         <td class="text-end">
-                                            @if ( true/* $item->estado == 1 */)
+                                            @if ( $item->estado == 1)
 
                                             <a href="{{ route('seguimiento_caso.show', $item->id) }}"
                                                 class="btn-sm btn-info" title="Ver detalles"> <i
@@ -78,7 +80,7 @@
                                             <a href="{{ route('seguimiento_caso.edit', $item->id) }}"
                                                         class="btn-sm btn-secondary"> <i
                                                             class="fas fa-edit"></i></a>
-                                            <form action="{{ route('seguimiento_caso.delete', $item->id) }}"
+                                                <form action="{{ route('seguimiento_caso.delete', $item->id) }}"
                                                                 method="POST" style="display: inline-block;"
                                                                 class="form-eliminar">
                                                                 @csrf

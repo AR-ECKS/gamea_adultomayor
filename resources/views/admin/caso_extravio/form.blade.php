@@ -18,7 +18,7 @@
                 <option value="" disabled selected required>Selecciona un Adulto Mayor</option>
                 
                 @foreach($adultos_mayores as $am)
-                    <option value="{{ $am->id }}">
+                    <option value="{{ $am->id }}" {{ isset($caso_extravio->adultomayor_id) && $caso_extravio->adultomayor_id == $am->id ? 'selected' : '' }}>
                         CI: {{ $am->ci }} .:: Nombre: {{ $am->nombres }} {{ $am->apellido_paterno }}
                         {{ $am->apellido_materno }}
                     </option>
@@ -48,7 +48,7 @@
         {!! $errors->first('ruta_imagen', '<p class="text-danger">:message</p>') !!}
         <div class="w-100 bg-info text-white rounded-1 text-center mt-1">Vista previa</div>
         <div class="img-container">
-            <img id="imagePreview" src="" alt="Picture" class="img-thumbnail w-100 d-block mx-auto">
+            <img id="imagePreview" src="{{ isset($caso_extravio->url_imagen) ? $caso_extravio->url_imagen : ''}}" alt="Picture" class="img-thumbnail w-100 d-block mx-auto">
         </div>
         <input class="form-control d-none" id="imagen" name="imagen" type="text">
     </div>
@@ -68,37 +68,6 @@
                 this.value = this.value.toUpperCase();
             });
         });
-
-        // EVITAR QUE SE ENVIE FORMULRIO
-        /* const form = document.querySelector('#createCasoExtravio');
-        const button = document.querySelector('button[type="submit"]');
-
-        button.addEventListener('click', (event) => {
-            event.preventDefault();
-            button.disabled = true;
-            console.log('PREPARNADO');
-            setTimeout(() => {
-                const formData = new FormData();
-                formData.append( 'fecha', document.querySelector('input[name="fecha"]').value );
-                formData.append( 'descripcion', document.querySelector('textarea[name="descripcion"]').value );
-                formData.append( 'otros', document.querySelector('input[name="otros"]').value );
-                formData.append( 'adultomayor_id', document.querySelector('input[name="adultomayor_id"]').value );
-                formData.append( 'ruta_imagen', document.querySelector('input[name="ruta_imagen"]').value );
-            }, 1000);
-
-            fetch(form.action, {
-                method: 'POST',
-                body: formData ,
-            })
-            .then((response) => response.json())
-            -then((data) => console.log(data);)
-            .catch(error => {
-                console.log('ERROR', error);
-            })
-            //form.submit();
-        }); */
-
-        // custom function 
         
     });
 </script>
@@ -106,26 +75,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js" integrity="sha512-9KkIqdfN7ipEW6B6k+Aq20PV31bjODg4AA52W+tYtAE0jE0kMx49bjJ3FgvS56wzmyfMUHbQ4Km2b7l9+Y/+Eg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const form = document.querySelector('#createCasoExtravio');
+        const form = document.querySelector('.caso-extravio-form-zero'); //#createCasoExtravio
 
         var input = document.querySelector('#ruta_imagen');
         var image = document.querySelector('#imagePreview');
         var cropper;
-        const data_image = {
-            'mime': null,
-            'name': null
-        };
 
         input.addEventListener('change', function (e) {
             //console.log('Se detecto cambios');
             const file = e.target.files[0];
             if(validarExtension(file)) {
-                console.log(file.size);
                 if(file.size/1024 <= {{$OPTIONS_IMAGE['max_size']}}){
-                    console.log('Correcto');
+                    //console.log('Correcto');
                     // si la imagen se carga ir a image.onload
-                    data_image.mime = file.type;
-                    data_image.name = file.name;
                     image.src = URL.createObjectURL(file);
                 } else {
                     Swal.fire({
@@ -146,8 +108,7 @@
         form.addEventListener('submit', (event) => {
             event.preventDefault();
             document.querySelector('#imagen').value = (cropper!==undefined)? cropper.getCroppedCanvas().toDataURL(): null;
-            //console.log(data_image);
-            console.log('Se detenio el envio');
+            //console.log('Se detenio el envio');
             
             form.submit();
         });
@@ -168,11 +129,14 @@
 
         // Define una función que se ejecutará cuando la imagen se cargue
         image.onload = function() {
+            console.log('SI');
             if(cropper!==undefined){
                 cropper.destroy();
+                cropper = undefined;
+                console.log(cropper);
             }
 
-            //console.log(`La imagen se ha cargado completamente. Dimensiones: ${image.naturalWidth}x${image.naturalHeight}`);
+            console.log(`La imagen se ha cargado completamente. Dimensiones: ${image.naturalWidth}x${image.naturalHeight}`);
             //console.log(`La imagen contenedor. Dimensiones: ${image.clientWidth}x${image.clientHeight}`);
 
             const width_container = image.clientWidth + 2;//cropper.containerData.width;

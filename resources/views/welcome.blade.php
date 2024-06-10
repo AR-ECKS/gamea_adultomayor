@@ -133,6 +133,43 @@ h1{
 
 
     <div class="container mt-5">
+        
+        @if(count($casos_de_estravio) > 0)
+            <div class="row">
+                @foreach ($casos_de_estravio as $item)
+                @php $birthDate = \Carbon\Carbon::parse($item->adulto_mayor->fecha_nacimiento); @endphp
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body row">
+                                <div class="col-md-12">
+                                    <h5 class="card-title text-center text-primary">Anuncio de Desaparecido</h5>
+                                </div>
+                                <div class="col-md-3">
+                                    <img src="{{$item->url_imagen}}" alt="Imagen de {{$item->adulto_mayor->nombres}}" class="img-thumbnail">
+                                </div>
+                                <div class="col-md-9">
+                                    <p class="card-text">
+                                        <strong>Nombre:</strong> {{$item->adulto_mayor->nombres}} {{$item->adulto_mayor->apellido_paterno}} {{$item->adulto_mayor->apellido_materno}} <br>
+                                        <strong>Edad:</strong> {{ $birthDate->age }} años <br>
+                                        <strong>Género</strong> {{$item->adulto_mayor->genero}}
+                                    </p>
+                                    <p class="card-text"><strong>Descripción:</strong> {{$item->descripcion}}.
+                                        Cualquier información sobre su paradero, por favor contactar al número 123-456789.
+                                    </p>
+                                </div>
+                                <div class="col-md-12 mt-3">
+                                    <button class="btn btn-primary">Compartir por WhatsApp</button>
+                                    <button class="btn btn-primary">Compartir por Facebook</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @else
+            <p class="text-success text-center fs-4">No se han publicado anuncios de personas desaparecidas.</p>
+        @endif
+        <hr>
         <div class="row">
             <div class="col-md-6">
                 <div class="card">

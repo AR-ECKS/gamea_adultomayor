@@ -86,7 +86,7 @@ class Seguimiento_casoController extends Controller
 
     public function destroy($id)
     {
-        Seguimiento_caso::destroy($id);
+        //Seguimiento_caso::destroy($id);
         Seguimiento_caso::where('id', $id)->update(['estado' => '0']);
         return redirect('admin/seguimiento_caso')->with('correcto', 'correcto');;
     }
@@ -96,6 +96,6 @@ class Seguimiento_casoController extends Controller
 
         Seguimiento_caso::where('id', $id)->update(['estado' => '1']);
 
-        return redirect('admin/seguimiento_caso')->with('correcto', 'correcto');
+        return redirect('admin/seguimiento_caso')->with('correcto', 'correcto');;
     }
 }
