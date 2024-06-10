@@ -111,6 +111,10 @@
         var input = document.querySelector('#ruta_imagen');
         var image = document.querySelector('#imagePreview');
         var cropper;
+        const data_image = {
+            'mime': null,
+            'name': null
+        };
 
         input.addEventListener('change', function (e) {
             //console.log('Se detecto cambios');
@@ -120,6 +124,8 @@
                 if(file.size/1024 <= {{$OPTIONS_IMAGE['max_size']}}){
                     console.log('Correcto');
                     // si la imagen se carga ir a image.onload
+                    data_image.mime = file.type;
+                    data_image.name = file.name;
                     image.src = URL.createObjectURL(file);
                 } else {
                     Swal.fire({
@@ -139,9 +145,10 @@
 
         form.addEventListener('submit', (event) => {
             event.preventDefault();
-            console.log(form);
             document.querySelector('#imagen').value = (cropper!==undefined)? cropper.getCroppedCanvas().toDataURL(): null;
+            //console.log(data_image);
             console.log('Se detenio el envio');
+            
             form.submit();
         });
 

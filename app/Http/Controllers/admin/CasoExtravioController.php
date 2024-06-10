@@ -8,6 +8,7 @@ use App\Models\CasoExtravio;
 use App\Models\AdultoMayor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Facades\Image;
 
 class CasoExtravioController extends Controller
 {
@@ -73,13 +74,38 @@ class CasoExtravioController extends Controller
         $caso_extravio->adultomayor_id = $request->adultomayor_id;
         # procesar imagen
         if(!is_null($request->imagen)){
-            $image = base64_decode($request->imagen);
+            try {
+                $imagen = Image::read($request->imagen);
+                $ancho_final = 0;
+                $alto_final = 0;
+                if($this->ANCHO_MINIMO_PREVISUALIZACION >= $imagen->width() && $imagen->width() <= $this->ANCHO_MAXIMO_PREVISUALIZACION){
+                    $ancho_final = $imagen->width();
+                    $alto_final = ($ancho_final/$this->ESCALA_IMAGEN_ANCHO) * $this->ESCALA_IMAGEN_ALTO;
+                } else {
+                    $ancho_final = $imagen->width() > $this->ANCHO_MAXIMO_PREVISUALIZACION? $this->ANCHO_MAXIMO_PREVISUALIZACION: $this->ANCHO_MINIMO_PREVISUALIZACION;
+                    $alto_final = ($ancho_final/$this->ESCALA_IMAGEN_ANCHO) * $this->ESCALA_IMAGEN_ALTO;
+                }
+                $imagen->resize($ancho_final, $alto_final);
+                $nombre_foto = "Empresa_logo_" . Str::random(5) . \Carbon\Carbon::now()->timestamp . '.'. $this->imagen_empresa_cliente->getClientOriginalExtension();
+                $imagen->save(Storage::disk('recursos_empresa')->path('/'). $nombre_foto);
+                
+                $empresa_cliente->imagen_nombre_empresa_cliente = $nombre_foto;
+            }catch(\Exception $e){
+                # error, no se como se lanza errores
+            }
+        }
+        return response()->json([
+            'REQUEST' => $request,
+            'IMAGE' => $request->file('sing'),
+            'otro' => $request->imagen
+        ], 200);
+        if(!is_null($request->imagen)){
             /* $nombreArchivo = $image->getClientOriginalName();
             $extensionarchivo = $image->getClientOriginalExtension(); */
             return response()->json([
                 "code"=> "1",
                 "message"=> "Ocurrio un error al subir la imagen",
-                "data"=> $image
+                "data"=> $request->imagen
             ], 200);
         }
         $caso_extravio->save();
