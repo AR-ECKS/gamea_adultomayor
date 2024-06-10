@@ -9,6 +9,7 @@
         "anhskohbo/no-captcha": "^3.6",
         "barryvdh/laravel-dompdf": "^2.1",
         "guzzlehttp/guzzle": "^7.2",
+        "intervention/image": "^2.7",
         "laravel-frontend-presets/material-dashboard": "^2.0",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
@@ -16,6 +17,7 @@
         "laravel/ui": "^4.4",
         "laravelcollective/html": "^6.4",
         "mews/captcha": "^3.3",
+        "nesbot/carbon": "^2.72",
         "spatie/laravel-permission": "^6.3"
     },
     "require-dev": {

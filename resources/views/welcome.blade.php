@@ -1,144 +1,71 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Creative - Start Bootstrap Theme</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap Icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+        <!-- SimpleLightbox plugin CSS-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{{ asset('assets/css/welcome.css') }}" rel="stylesheet">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anuncios de Adultos Mayores Desaparecidos</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Estilos generales */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-            color: #fff;
-        }
-
-        /* Estilos del navbar */
-        .navbar {
-            background-color: #ffffff;
-            /* Rojo */
-        }
-
-        .navbar-brand img {
-            max-height: 40px;
-            /* Ajustar tamaño del logo */
-        }
-
-        /* Estilos del parallax */
-        .parallax {
-            background-image: url('https://cdn.pixabay.com/photo/2017/02/14/17/50/hands-2066551_960_720.jpg');
-            /* Imagen de fondo */
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
-            height: 90vh;
-            /* Altura ajustable */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-        }
-
-        .parallax::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.1);
-            /* Superposición oscura */
-            filter: blur(10px);
-            /* Aplica el efecto de desenfoque */
-
-        }
-
-
-h1{
-   font-size: 5em;
-   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-   color: white!important;
-   z-index: 99999;
-}
-
-
-        /* Estilos del card de anuncio */
-        .card {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-
-        .card-title {
-            color: #333;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .card-text {
-            color: #666;
-        }
-
-
-    </style>
-</head>
-
-<body>
-
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="https://www.elalto.gob.bo/wp-content/uploads/2022/09/logos-modificados-final-02-e1663769657614-300x63.png"
-                    alt="Logo" width="150"> <!-- Agregar el logo -->
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link text-danger " href="#">Inicio</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link text-danger" href="#">Contacto</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-danger" href="{{ route('login') }}">Inicar Sesion</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="parallax">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h1 class="mb-3 text-white">ANUNCIOS DE DESAPARECIDOS</h1>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#page-top">INICIO</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="#about">Desaparecidos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+            
+                    </ul>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <h2 class="mb-0 text-light">"Cuidemos a nuestros adultos mayores"</h2>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container px-4 px-lg-5 h-100">
+                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-8 align-self-end">
+                    <img src="https://www.elalto.gob.bo/wp-content/uploads/2022/09/logos-modificados-final-02-e1663769657614-300x63.png"
+                    alt="Logo" width="300"> 
+                      
+                        <hr class="divider" />
+                        
+                    </div>
+                    <div class="col-lg-8 align-self-baseline">
+                        <p class="text-white-75 mb-5">UNIDAD DE ADULTOS MAYORES</p>
+                        <a class="btn btn-primary btn-xl" href="#about">ver anuncios de desaparecidos</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </header>
+        <!-- About-->
+        <section class="page-section bg-primary" id="about">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="text-white mt-0">ADULTOS MAYORES DESAPARECIDOS!</h2>
+                        <hr class="divider divider-light" />
+                   
 
-
-    <div class="container mt-5">
-        
-        @if(count($casos_de_estravio) > 0)
+@if(count($casos_de_estravio) > 0)
             <div class="row">
                 @foreach ($casos_de_estravio as $item)
                 @php $birthDate = \Carbon\Carbon::parse($item->adulto_mayor->fecha_nacimiento); @endphp
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-body row">
                                 <div class="col-md-12">
@@ -157,10 +84,7 @@ h1{
                                         Cualquier información sobre su paradero, por favor contactar al número 123-456789.
                                     </p>
                                 </div>
-                                <div class="col-md-12 mt-3">
-                                    <button class="btn btn-primary">Compartir por WhatsApp</button>
-                                    <button class="btn btn-primary">Compartir por Facebook</button>
-                                </div>
+                             
                             </div>
                         </div>
                     </div>
@@ -168,84 +92,89 @@ h1{
             </div>
         @else
             <p class="text-success text-center fs-4">No se han publicado anuncios de personas desaparecidas.</p>
-        @endif
-        <hr>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Anuncio de Desaparecido</h5>
-                        <p class="card-text"><strong>Nombre:</strong> Juan Pérez</p>
-                        <p class="card-text"><strong>Edad:</strong> 75 años</p>
-                        <p class="card-text"><strong>Descripción:</strong> Juan Pérez fue visto por última vez el 15 de
-                            marzo de 2024 en la zona de La Paz. Tiene cabello blanco y ojos marrones. Cualquier
-                            información sobre su paradero, por favor contactar al número 123-456789.</p>
-                        <button class="btn btn-primary">Compartir por WhatsApp</button>
-                        <button class="btn btn-primary">Compartir por Facebook</button>
+        @endif</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Anuncio de Desaparecido</h5>
-                        <p class="card-text"><strong>Nombre:</strong> Juan Pérez</p>
-                        <p class="card-text"><strong>Edad:</strong> 75 años</p>
-                        <p class="card-text"><strong>Descripción:</strong> Juan Pérez fue visto por última vez el 15 de
-                            marzo de 2024 en la zona de La Paz. Tiene cabello blanco y ojos marrones. Cualquier
-                            información sobre su paradero, por favor contactar al número 123-456789.</p>
-                        <button class="btn btn-primary">Compartir por WhatsApp</button>
-                        <button class="btn btn-primary">Compartir por Facebook</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Anuncio de Desaparecido</h5>
-                        <p class="card-text"><strong>Nombre:</strong> Juan Pérez</p>
-                        <p class="card-text"><strong>Edad:</strong> 75 años</p>
-                        <p class="card-text"><strong>Descripción:</strong> Juan Pérez fue visto por última vez el 15 de
-                            marzo de 2024 en la zona de La Paz. Tiene cabello blanco y ojos marrones. Cualquier
-                            información sobre su paradero, por favor contactar al número 123-456789.</p>
-                        <button class="btn btn-primary">Compartir por WhatsApp</button>
-                        <button class="btn btn-primary">Compartir por Facebook</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Anuncio de Desaparecido</h5>
-                        <p class="card-text"><strong>Nombre:</strong> Juan Pérez</p>
-                        <p class="card-text"><strong>Edad:</strong> 75 años</p>
-                        <p class="card-text"><strong>Descripción:</strong> Juan Pérez fue visto por última vez el 15 de
-                            marzo de 2024 en la zona de La Paz. Tiene cabello blanco y ojos marrones. Cualquier
-                            información sobre su paradero, por favor contactar al número 123-456789.</p>
-                        <button class="btn btn-primary">Compartir por WhatsApp</button>
-                        <button class="btn btn-primary">Compartir por Facebook</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Anuncio de Desaparecido</h5>
-                        <p class="card-text"><strong>Nombre:</strong> Juan Pérez</p>
-                        <p class="card-text"><strong>Edad:</strong> 75 años</p>
-                        <p class="card-text"><strong>Descripción:</strong> Juan Pérez fue visto por última vez el 15 de
-                            marzo de 2024 en la zona de La Paz. Tiene cabello blanco y ojos marrones. Cualquier
-                            información sobre su paradero, por favor contactar al número 123-456789.</p>
-                        <button class="btn btn-primary">Compartir por WhatsApp</button>
-                        <button class="btn btn-primary">Compartir por Facebook</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Agregar más anuncios aquí -->
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
+        </section>
+       
+        <!-- Footer-->
+        <footer class="bg-light py-5">
+            <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2024 - GAMEA</div></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- SimpleLightbox plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
 </html>
+
+<script>
+    /*!
+* Start Bootstrap - Creative v7.0.7 (https://startbootstrap.com/theme/creative)
+* Copyright 2013-2023 Start Bootstrap
+* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-creative/blob/master/LICENSE)
+*/
+//
+// Scripts
+// 
+
+window.addEventListener('DOMContentLoaded', event => {
+
+// Navbar shrink function
+var navbarShrink = function () {
+    const navbarCollapsible = document.body.querySelector('#mainNav');
+    if (!navbarCollapsible) {
+        return;
+    }
+    if (window.scrollY === 0) {
+        navbarCollapsible.classList.remove('navbar-shrink')
+    } else {
+        navbarCollapsible.classList.add('navbar-shrink')
+    }
+
+};
+
+// Shrink the navbar 
+navbarShrink();
+
+// Shrink the navbar when page is scrolled
+document.addEventListener('scroll', navbarShrink);
+
+// Activate Bootstrap scrollspy on the main nav element
+const mainNav = document.body.querySelector('#mainNav');
+if (mainNav) {
+    new bootstrap.ScrollSpy(document.body, {
+        target: '#mainNav',
+        rootMargin: '0px 0px -40%',
+    });
+};
+
+// Collapse responsive navbar when toggler is visible
+const navbarToggler = document.body.querySelector('.navbar-toggler');
+const responsiveNavItems = [].slice.call(
+    document.querySelectorAll('#navbarResponsive .nav-link')
+);
+responsiveNavItems.map(function (responsiveNavItem) {
+    responsiveNavItem.addEventListener('click', () => {
+        if (window.getComputedStyle(navbarToggler).display !== 'none') {
+            navbarToggler.click();
+        }
+    });
+});
+
+// Activate SimpleLightbox plugin for portfolio items
+new SimpleLightbox({
+    elements: '#portfolio a.portfolio-box'
+});
+
+});
+
+</script>

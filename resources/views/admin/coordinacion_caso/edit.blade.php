@@ -8,9 +8,10 @@
 
 
             <div class="col-md-12">
+            <div class="card">
                       <a href="{{ url('/admin/coordinacion_caso') }}" title="Back"><button class="btn btn-warning btn-sm m-2"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retornar</button></a>
-                         <div class="m-auto">Editar categoria: </div>
-                          <div class="m-auto"><h2> {{ $categorium->nombre }}</h3></div>
+                         <div class="m-auto">Editar coordinacion de caso: </div>
+                          <div class="m-auto"><h2> {{ $coordinacion_caso->nombre }}</h3></div>
                           <div class="card-body">
 
 

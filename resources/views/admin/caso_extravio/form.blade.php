@@ -44,7 +44,7 @@
 
     <div class="col-md-3">
         <label for="ruta_imagen" class="block font-medium text-sm text-gray-700">{{ 'Imagen:' }}</label>
-        <input class="form-control" id="ruta_imagen" name="ruta_imagen" type="file" accept="image/png,image/jpeg">
+        <input class="form-control" id="ruta_imagen" name="imagen" type="file" accept="image/png,image/jpeg">
         {!! $errors->first('ruta_imagen', '<p class="text-danger">:message</p>') !!}
         <div class="w-100 bg-info text-white rounded-1 text-center mt-1">Vista previa</div>
         <div class="img-container">

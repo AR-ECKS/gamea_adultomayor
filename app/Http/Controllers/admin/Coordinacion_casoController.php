@@ -38,10 +38,13 @@ class Coordinacion_casoController extends Controller
     }
 
     public function create()
-    {         
-        $adultomayor = AdultoMayor::get();
-        return view('admin.coordinacion_caso.create', compact('adultomayor'));
+    {
+        $registros = RegistroAtencion::all();
+    
+        return view('admin.coordinacion_caso.create', compact('registros'));
     }
+    
+    
 
     public function store(Request $request)
     {
@@ -64,10 +67,12 @@ class Coordinacion_casoController extends Controller
     public function edit($id)
     {
         $coordinacion_caso = Coordinacion_caso::findOrFail($id);
-
-        return view('admin.coordinacion_caso.edit', compact('coordinacion_caso'));
+        $registros = RegistroAtencion::all();
+    
+        return view('admin.coordinacion_caso.edit', compact('coordinacion_caso', 'registros'));
     }
-
+    
+    
 
     public function update(Request $request, $id)
     {
@@ -82,7 +87,6 @@ class Coordinacion_casoController extends Controller
 
     public function destroy($id)
     {
-        Coordinacion_caso::destroy($id);
         Coordinacion_caso::where('id', $id)->update(['estado' => '0']);
         return redirect('admin/coordinacion_caso')->with('correcto', 'correcto');;
     }
@@ -97,17 +101,22 @@ class Coordinacion_casoController extends Controller
 
     
     public function generateForm($id)
-    {
+{
+    date_default_timezone_set('America/La_Paz');
+    $fecha_actual = date('Y-m-d');
+    
+    // Encuentra la coordinación de caso por su ID
+    $coordinacion = Coordinacion_caso::findOrFail($id);
+    
+    // Encuentra el registro de atención asociado a la coordinación
+    $registro = RegistroAtencion::findOrFail($coordinacion->registroatencion_id);
+    
+    // Encuentra al adulto mayor asociado al registro de atención
+    $adulto = AdultoMayor::findOrFail($registro->adultomayor_id);
 
-        date_default_timezone_set('America/La_Paz');
-        $fecha_actual = date('Y-m-d');
-        $coordinacion = Coordinacion_caso::findOrFail($id);
-        $registro = RegistroAtencion::findOrFail($id); // Encuentra el registro de atención por su ID
+    // Genera la vista y la renderiza
 
-        $adulto = AdultoMayor::findOrFail($registro->adultomayor_id); // Encuentra al adulto mayor utilizando el ID almacenado en el registro de atención
-
-
-        $view = View::make('admin/pdf/coordinacion', compact('adulto', 'registro'))->render();
+        $view = View::make('admin/pdf/coordinacion', compact('adulto','coordinacion', 'registro'))->render();
 
         $pdf = App::make('dompdf.wrapper');
         $pdf->setOptions([

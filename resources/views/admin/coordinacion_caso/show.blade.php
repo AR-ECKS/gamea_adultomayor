@@ -10,7 +10,7 @@
                 <div class="col-md-12">
                 <div class="card">
                       <a href="{{ url('/admin/coordinacion_caso') }}" title="Back"><button class="btn btn-warning btn-sm m-2"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retornar</button></a>
-                         <div class="m-auto ">Detalles de la '/admin/coordinacion_caso': </div>
+                         <div class="m-auto ">Detalles de la coordinacion: </div>
                           <div class="m-auto"><h2> {{ $coordinacion_caso->id  }}</h3></div>
                      <div class="card-body">
 

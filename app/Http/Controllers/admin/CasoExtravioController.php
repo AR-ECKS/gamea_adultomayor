@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 
+use Carbon\Carbon;
+
 class CasoExtravioController extends Controller
 {
     const OPTIONS_IMAGE = [
@@ -33,17 +35,16 @@ class CasoExtravioController extends Controller
         return view('admin.caso_extravio.create', compact('adultos_mayores'))->with('correcto', 'correcto')
             ->with('OPTIONS_IMAGE', self::OPTIONS_IMAGE);
     }
-
     public function store(Request $request)
     {
         $requestData = $request->all();
-
+    
         $request->validate([
             'fecha' => 'required|date',
             'descripcion' => 'required',
             'otros' => 'nullable|string|min:2',
             'adultomayor_id' => 'required',
-            #'ruta_imagen' => 'nullable|image|mimes:jpg,png|max:10240',
+            // 'imagen' => 'nullable|image|mimes:jpg,png|max:10240',
         ]);
         
         $caso_extravio = new CasoExtravio();
@@ -51,35 +52,39 @@ class CasoExtravioController extends Controller
         $caso_extravio->descripcion = $request->descripcion;
         $caso_extravio->otros = $request->otros;
         $caso_extravio->adultomayor_id = $request->adultomayor_id;
-        # procesar imagen
-        if(!is_null($request->imagen)){
+    
+        if ($request->hasFile('imagen')) {
             try {
-                $imagen = Image::make($request->imagen);
+                $imagen = Image::make($request->file('imagen'));
+    
                 $ancho_final = 0;
                 $alto_final = 0;
-                if(self::OPTIONS_IMAGE['min_width'] >= $imagen->width() && $imagen->width() <= self::OPTIONS_IMAGE['max_width']){
+                if (self::OPTIONS_IMAGE['min_width'] >= $imagen->width() && $imagen->width() <= self::OPTIONS_IMAGE['max_width']) {
                     $ancho_final = $imagen->width();
-                    $alto_final = ($ancho_final/ self::OPTIONS_IMAGE['escale'][0]) * self::OPTIONS_IMAGE['escale'][1];
+                    $alto_final = ($ancho_final / self::OPTIONS_IMAGE['escale'][0]) * self::OPTIONS_IMAGE['escale'][1];
                 } else {
-                    $ancho_final = $imagen->width() > self::OPTIONS_IMAGE['max_width']? self::OPTIONS_IMAGE['max_width']: self::OPTIONS_IMAGE['min_width'];
-                    $alto_final = ($ancho_final/self::OPTIONS_IMAGE['escale'][0]) * self::OPTIONS_IMAGE['escale'][1];
+                    $ancho_final = $imagen->width() > self::OPTIONS_IMAGE['max_width'] ? self::OPTIONS_IMAGE['max_width'] : self::OPTIONS_IMAGE['min_width'];
+                    $alto_final = ($ancho_final / self::OPTIONS_IMAGE['escale'][0]) * self::OPTIONS_IMAGE['escale'][1];
                 }
+    
                 $imagen->resize($ancho_final, $alto_final);
-                $nombre_foto = "Adulto_Mayor_Foto_". \Carbon\Carbon::now()->timestamp . '.jpg';
-                //$imagen->save(public_path('extravios/'). $nombre_foto, 100, 'jpg');
-                $imagen->save(Storage::disk('extravios')->path('/'). $nombre_foto, 100, 'jpg');
-                #$imagen->save(Storage::disk('recursos_empresa')->path('/'). $nombre_foto);
-                
+                $nombre_foto = "Adulto_Mayor_Foto_" . Carbon::now()->timestamp . '.jpg';
+    
+                // Guarda la imagen en el disco 'extravios'
+                Storage::disk('extravios')->put($nombre_foto, (string) $imagen->encode('jpg', 100));
+    
                 $caso_extravio->ruta_imagen = $nombre_foto;
-            }catch(\Exception $e){
-                # error, no se como se lanza errores
-                //throw $e;
+            } catch (\Exception $e) {
+                // Manejo de errores
+                // throw $e;
             }
         }
+    
         $caso_extravio->save();
-        #
+    
         return redirect('admin/caso_extravio')->with('flash_message', 'RegistroAtencion added!');
     }
+    
 
     public function show($id)
     {

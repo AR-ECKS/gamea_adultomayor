@@ -48,6 +48,7 @@ $(document).ready(function(){
               <br><br><br>
               <div class="tab-content">
                 <div class="table-responsive-xl">
+                  
                   <table class="table table-sm text-sm table-striped">
                     <thead class="">
                         <th     >Acciones</th>

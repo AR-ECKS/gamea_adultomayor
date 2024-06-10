@@ -79,9 +79,7 @@
                                                             <a href="{{ route('caso_extravio.edit', $item->id) }}"
                                                                 class="btn-sm btn-secondary"> <i
                                                                     class="fas fa-edit"></i></a>
-                                                            <a href="{{-- route('caso_extravio.generateForm', $item->id) --}}"
-                                                                class="btn-sm btn-warning" target="_blank"
-                                                                title="Ver detalles"> <i class="fas fa-print"></i></a>
+                                                           
                                                             <form
                                                                 action="{{ route('caso_extravio.delete', $item->id) }}"
                                                                 method="POST" style="display: inline-block;"

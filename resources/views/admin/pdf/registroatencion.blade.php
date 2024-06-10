@@ -324,15 +324,15 @@ $fecha_final = $fecha_nacimiento->format('d') . ' de ' . $mes_formateado . ' de 
 
     <br><br><br><br>
 <span>   FIRMA O HUELLA DEL ADULTO(A) MAYOR </span><span style="margin-left: 80px;">FIRMA Y SELLO DEL (LA) PROFESIONAL</span>
-</body>
 <script type="text/php">
-        if ( isset($pdf) ) {
-            $pdf->page_script('
-                $font = $fontMetrics->get_font("Arial, Helvetica, sans-serif", "normal");
-                $pdf->text(150, 800,"Avenida Costanera N 5022, Urbanización Libertad , entre calles J.J. Torres y Hernan Siles", $font, 8);
-                $pdf->text(150, 810,"(Jacha Uta - Piso Planta Baja) a media cuadra de la Estación de Bomberos El Alto", $font, 8);
-          
-            ');
-        }
-    </script>
+    if ( isset($pdf) ) {
+        $pdf->page_script('
+            $font = $fontMetrics->get_font("Arial, Helvetica, sans-serif", "normal");
+            $pdf->text(150, 800,"Avenida Costanera N 5022, Urbanización Libertad, entre calles J.J. Torres y Hernan Siles", $font, 8);
+            $pdf->text(150, 810,"(Jacha Uta - Piso Planta Baja) a media cuadra de la Estación de Bomberos El Alto", $font, 8);
+        ');
+    }
+</script>
+</body>
+
 </html>

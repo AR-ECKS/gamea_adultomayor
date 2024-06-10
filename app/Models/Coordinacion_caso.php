@@ -25,7 +25,7 @@ class Coordinacion_caso extends Model
      *
      * @var array
      */
-    protected $fillable = ['fecha', 'requerimiento', 'area_origen', 'area_destino', 'adultomayor_id'];
+    protected $fillable = ['fecha', 'requerimiento','intervencion' ,'area_origen', 'area_destino', 'registroatencion_id'];
 
     
 }
