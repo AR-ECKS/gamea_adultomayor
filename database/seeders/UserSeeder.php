@@ -24,8 +24,6 @@ class UserSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
         $user->assignRole('Admin');
-<<<<<<< HEAD
-=======
     
         $user = User::create([
             'name' => 'Alain',
@@ -37,7 +35,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('Agamea123@'),
         ]);
         $user->assignRole('Admin');
->>>>>>> a5c30e6 (falta modulo citacion, los botones en usuarios, los cuadros estadisticos)
+
     }
     
 }
