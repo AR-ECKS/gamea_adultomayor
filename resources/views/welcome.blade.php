@@ -72,7 +72,8 @@
                                     <h5 class="card-title text-center text-primary">Anuncio de Desaparecido</h5>
                                 </div>
                                 <div class="col-md-3">
-                                    <img src="{{$item->url_imagen}}" alt="Imagen de {{$item->adulto_mayor->nombres}}" class="img-thumbnail">
+                                    <img src="{{ asset('extravios').'/'.$item->ruta_imagen}}"
+                                     alt="Imagen de {{$item->adulto_mayor->nombres}}" class="img-thumbnail">
                                 </div>
                                 <div class="col-md-9">
                                     <p class="card-text">

@@ -30,20 +30,19 @@ return [
 
     'disks' => [
 
-        'local' => [
-            'driver' => 'local',
-            'root' => storage_path('app'),
-            'throw' => false,
-        ],
+      'local' => [
+'driver' => 'local',
+'root' => base_path('public/storage'),
+],
+
 
         
         'public' => [
-            'driver' => 'local',
-            'root' => base_path('public/storage'),
-            'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
-            'throw' => false,
-        ],
+'driver' => 'local',
+'root' => base_path('public/storage'),
+'url' => env('APP_URL').'/storage',
+'visibility' => 'public',
+],
 
         'extravios' => [
             'driver' => 'local',
