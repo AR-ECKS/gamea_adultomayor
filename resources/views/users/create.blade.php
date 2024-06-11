@@ -70,19 +70,19 @@
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-md-3 m-auto">
-                                        <label for="exampleInputEmail1" class="form-label">Cargo: </label>
+                                        <label for="cargo" class="form-label">Cargo: </label>
                                     </div>
                                     <div class="col-md-9">
-                                        <input type="email" class="form-control" required name="cargo"
+                                        <input type="text" class="form-control" required name="cargo" id="cargo"
                                             maxlength="20" placeholder="" value="{{ old('email') }}">
                                     </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-md-3 m-auto">
-                                        <label for="exampleInputEmail1" class="form-label">Correo Electrónico: </label>
+                                        <label for="email" class="form-label">Correo Electrónico: </label>
                                     </div>
                                     <div class="col-md-9">
-                                        <input type="email" class="form-control" required name="email"
+                                        <input type="email" class="form-control" required name="email" id="email"
                                             maxlength="20" placeholder="" value="{{ old('email') }}">
                                     </div>
                                 </div>

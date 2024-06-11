@@ -141,7 +141,7 @@
                 </ul>
             @endcan
 
-            {{-- @can('acceso_registro_atencion') --}}
+            {{-- @can('casos_de_extravio') --}}
                 <ul class="nav flex-column">
                     <li class="nav-item">
                         <a class="nav-link text-dark {{ $activePage == 'CasoExtravio' ? ' active text-white ' . $classbg : '' }}"
@@ -156,6 +156,22 @@
                     </li>
                 </ul>
             {{-- @endcan --}}
+
+            {{-- @can('citaciones') --}}
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link text-dark {{ $activePage == 'Citaciones' ? ' active text-white ' . $classbg : '' }}"
+                        href="{{ route('citacion.index') }}">
+                        <!-- <div class="text-dark text-center me-2 d-flex align-items-center justify-content-center">
+                            <i style="font-size: 1rem; color: {{ $activePage == 'Citaciones' ? 'white' : 'inherit' }}"
+                                class="fas fa-users ps-2 pe-2 text-center"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Coordinacion Caso</span> -->
+                        <img src="https://img.icons8.com/?size=100&id=35639&format=png&color=000000 " width="30"  alt="" style=" margin-left:3px" > Citaciones
+                    </a>
+                </li>
+            </ul>
+        {{-- @endcan --}}
 
     </div>
 
