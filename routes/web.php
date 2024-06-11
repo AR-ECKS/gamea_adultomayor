@@ -24,6 +24,7 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\RegistroAtencionController;
 use App\Http\Controllers\admin\Seguimiento_casoController;
 use App\Http\Controllers\admin\CasoExtravioController;
+use App\Http\Controllers\admin\CitacionController;
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
@@ -94,9 +95,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::delete('admin/caso_extravio/{caso_extravio}', [CasoExtravioController::class, 'destroy'])->name('caso_extravio.delete');
 	Route::get('admin/caso_extravio/{caso_extravio}/deleted', [CasoExtravioController::class, 'reingresar'])->name('caso_extravio.reingresar');
 
-
+	#  Citaciones
+	Route::resource('admin/citacion', CitacionController::class);
+	Route::delete('admin/citacion/{citacion}', [CitacionController::class, 'destroy'])->name('citacion.delete');
+	Route::get('admin/citacion/{citacion}/deleted', [CitacionController::class, 'reingresar'])->name('citacion.reingresar');
 });
-
-
-
 

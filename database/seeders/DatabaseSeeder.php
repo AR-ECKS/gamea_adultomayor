@@ -32,9 +32,13 @@ class DatabaseSeeder extends Seeder
         \App\Models\AdultoMayor::create(['nombres' => 'Marisol', 'apellido_paterno' => 'Gutieerez', 'apellido_materno' => 'Medina', 'genero' => 'Masculino', 'ci' => '77777', 'extension' => 'LP', 'fecha_nacimiento' => '2000-02-02', 'nro_referencia' => '2023424', 'estado_civil' => 'Soltero', 'grado_instruccion' => 'Primaria Completa', 'ocupacion' => 'nada', 'situacion' => 'Jubilado', 'area' => 'Rural']);
         \App\Models\AdultoMayor::create(['nombres' => 'Luisa', 'apellido_paterno' => 'Conde', 'apellido_materno' => 'Mamani', 'genero' => 'Masculino', 'ci' => '88888', 'extension' => 'LP', 'fecha_nacimiento' => '2000-02-02', 'nro_referencia' => '2023424', 'estado_civil' => 'Soltero', 'grado_instruccion' => 'Primaria Completa', 'ocupacion' => 'nada', 'situacion' => 'Jubilado', 'area' => 'Rural']);
 
-        \App\Models\RegistroAtencion::create(['fecha' => '2024-06-08', 'tipologia' => 'AA', 'adultomayor_id' => 1, 'descripcion' => 'Asuntos varios', 'peticion' => 'AAAAA', 'nombres_denunciado' => 'Juan Mollinedo', 'acciones' => 'APERTURA CASO']);
-        \App\Models\RegistroAtencion::create(['fecha' => '2024-06-08', 'tipologia' => 'BB', 'adultomayor_id' => 3, 'descripcion' => 'Asuntos varios', 'peticion' => 'BBBC', 'nombres_denunciado' => 'Juan Limachiu', 'acciones' => 'APERTURA CASO']);
-        \App\Models\RegistroAtencion::create(['fecha' => '2024-06-08', 'tipologia' => 'CC', 'adultomayor_id' => 4, 'descripcion' => 'Asuntos varios', 'peticion' => 'BCCCC', 'nombres_denunciado' => 'Juan ROdriguez', 'acciones' => 'APERTURA CASO']);
+        \App\Models\RegistroAtencion::create(['fecha' => '2024-06-08', 'tipologia' => 'AA', 'adultomayor_id' => 1, 'descripcion' => 'Asuntos varios', 'peticion' => 'AAAAA', 'nombres_denunciado' => 'Juan Mollinedo', 'acciones' => 'APERTURA CASO', 'nro_caso' => '1/2024']);
+        \App\Models\RegistroAtencion::create(['fecha' => '2024-06-08', 'tipologia' => 'BB', 'adultomayor_id' => 3, 'descripcion' => 'Asuntos varios', 'peticion' => 'BBBC', 'nombres_denunciado' => 'Juan Limachiu', 'acciones' => 'APERTURA CASO', 'nro_caso' => '2/2024']);
+        \App\Models\RegistroAtencion::create(['fecha' => '2024-06-08', 'tipologia' => 'CC', 'adultomayor_id' => 4, 'descripcion' => 'Asuntos varios', 'peticion' => 'BCCCC', 'nombres_denunciado' => 'Juan ROdriguez', 'acciones' => 'APERTURA CASO', 'nro_caso' => '3/2024']);
+
+        \App\Models\Citacion::create(['registro_atencion_id' => 1, 'numero_citacion' => 'primera citacion', 'tipologia' => 'ORIENTACION LEGAL', 'citados' => 'Sr. Quien sera 1', 'descripcion' => 'Apersonarse antes estas dependencias el1111', 'fecha' => '2020-02-02']);
+        \App\Models\Citacion::create(['registro_atencion_id' => 2, 'numero_citacion' => 'primera citacion', 'tipologia' => 'ORIENTACION LEGAL', 'citados' => 'Sr. Quien sera 2', 'descripcion' => 'Apersonarse antes estas dependencias el2222', 'fecha' => '2020-02-04']);
+        \App\Models\Citacion::create(['registro_atencion_id' => 3, 'numero_citacion' => 'primera citacion', 'tipologia' => 'ORIENTACION LEGAL', 'citados' => 'Sr. Quien sera 3', 'descripcion' => 'Apersonarse antes estas dependencias el3333', 'fecha' => '2020-02-05']);
         
     }
 }
